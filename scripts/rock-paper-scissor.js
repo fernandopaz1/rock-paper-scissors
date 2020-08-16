@@ -1,8 +1,8 @@
 const options = ["rock",
                 "paper",
                 "scissors"];
-let playerScore = 0;
-let computerScore = 0;
+let playerScore
+let computerScore
 
 function computerPlay(){
     let index = Math.floor(Math.random()*3)
@@ -10,7 +10,29 @@ function computerPlay(){
 }
 
 
+const btnR = document.querySelector('#btnR');
+const btnP = document.querySelector('#btnP');
+const btnS = document.querySelector('#btnS');
 
+var fRock = () => alert(playRound("rock", computerPlay(),playerScore,computerScore));
+
+var fPaper =() => alert(playRound("paper", computerPlay(),playerScore,computerScore));
+
+var fScissors = () => alert(playRound("scissors", computerPlay(),playerScore,computerScore));
+
+
+const btnNewGame = document.querySelector('#btnNewGame');
+
+btnNewGame.addEventListener('click',beginGame);
+
+
+function beginGame(){
+    playerScore=0;
+    computerScore=0;
+    btnR.addEventListener('click', fRock);
+    btnP.addEventListener('click', fPaper);
+    btnS.addEventListener('click',fScissors);
+}
 
   
 function showResult(playerScore,computerScore){
@@ -20,13 +42,11 @@ function showResult(playerScore,computerScore){
 
 function endGame(playerScore,computerScore){
     if(playerScore >= 3 || computerScore >= 3){
-        alert("Fin")
-        alert(playerScore)
+
         btnR.removeEventListener('click', fRock);
         btnP.removeEventListener('click', fPaper);
-        btnS.removeEventListener('click', fSissors);
-        alert("Fin2")
-        
+        btnS.removeEventListener('click', fScissors);
+
         (playerScore >=3) ? alert("You Win the match") : alert("You Lose the match")
         
     }
@@ -95,35 +115,3 @@ function playRound(playerSelection, computerSelection) {
             break                    
     }
 }
-
-const btnR = document.querySelector('#btnR')
-const btnP = document.querySelector('#btnP')
-const btnS = document.querySelector('#btnS')
-
-function beginGame(){
-
-    /*function eventoRegistrado(eleccion){
-        return function(){
-                alert(playRound(eleccion, computerPlay(),playerScore,computerScore))}
-    }
-
-    var fRock = eventoRegistrado("rock")
-    var fPaper = eventoRegistrado("paper")
-    var fScissors = eventoRegistrado("scissors") 
-    */
-
-   function fRock() {
-    alert(playRound("rock", computerPlay(),playerScore,computerScore))}
-
-    function fPaper() {
-        alert(playRound("paper", computerPlay(),playerScore,computerScore))}
-
-    function fScissors() {
-        alert(playRound("scissors", computerPlay(),playerScore,computerScore))}
-    
-    btnR.addEventListener('click', fRock);
-    btnP.addEventListener('click', fPaper);
-    btnS.addEventListener('click',fScissors);
-}
-
-beginGame();
