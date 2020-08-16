@@ -1,12 +1,35 @@
 const options = ["rock",
                 "paper",
                 "scissors"];
-let playerScore
-let computerScore
+let playerScore = 0;
+let computerScore = 0;
 
 function computerPlay(){
     let index = Math.floor(Math.random()*3)
     return options[index]
+}
+
+
+
+
+  
+function showResult(playerScore,computerScore){
+    alert("Player:  "+playerScore+"  Computer: " +computerScore);
+    endGame(playerScore,computerScore);
+}
+
+function endGame(playerScore,computerScore){
+    if(playerScore >= 3 || computerScore >= 3){
+        alert("Fin")
+        alert(playerScore)
+        btnR.removeEventListener('click', fRock);
+        btnP.removeEventListener('click', fPaper);
+        btnS.removeEventListener('click', fSissors);
+        alert("Fin2")
+        
+        (playerScore >=3) ? alert("You Win the match") : alert("You Lose the match")
+        
+    }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -14,30 +37,36 @@ function playRound(playerSelection, computerSelection) {
         case "rock":
             switch(computerSelection){
                 case "rock": 
+                    showResult(playerScore,computerScore);
                     return "Tie! Rock vs Rock"
                     break
                 case "paper":
                     computerScore++
+                    showResult(playerScore,computerScore);
                     return "You Lose! Paper beats Rock"
                     break
                 case "scissors":
                     playerScore++
-                    return "You Win! Rock beats Scissors"
-                    break    
+                    showResult(playerScore,computerScore);
+                    return "You Win! Rock beats Scissors";
+                    break;    
             }
             break
 
         case "paper":
             switch(computerSelection){
                 case "rock":
-                    playerScore++
-                    return "You Win! Paper beats Rock"
+                    playerScore++;
+                    showResult(playerScore,computerScore);
+                    return "You Win! Paper beats Rock";
                     break
                 case "paper":
-                    return "Tie! Paper vs Paper"
+                    showResult(playerScore,computerScore);
+                    return "Tie! Paper vs Paper";
                     break
                 case "scissors":
-                    computerScore++
+                    computerScore++;
+                    showResult(playerScore,computerScore);
                     return "You Lose! Scissors beats Paper"
                     break    
             }
@@ -47,13 +76,16 @@ function playRound(playerSelection, computerSelection) {
             switch(computerSelection){
                 case "rock":
                     computerScore++ 
+                    showResult(playerScore,computerScore);
                     return "You Lose! Rock beats Scissors"
                     break
                 case "paper":
                     playerScore++
+                    showResult(playerScore,computerScore);
                     return "You Win! Scissors beat Paper"
                     break
                 case "scissors":
+                    showResult(playerScore,computerScore);
                     return "Tie! Scissors vs Scissors"
                     break    
             }
@@ -64,20 +96,34 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(){
-    let playerSelection
-    playerScore=0
-    computerScore=0
-    while(playerScore<5 && computerScore<5){
-        playerSelection = prompt("Enter your selection: rock paper or scissors")
-        if (playerSelection === null) {
-            playerSelection = "";
-        }
-        playerSelection = playerSelection.toLowerCase()
-        alert(playRound(playerSelection,computerPlay()))
-        alert("Player:  "+playerScore+"  Computer: " +computerScore)
-        
+const btnR = document.querySelector('#btnR')
+const btnP = document.querySelector('#btnP')
+const btnS = document.querySelector('#btnS')
+
+function beginGame(){
+
+    /*function eventoRegistrado(eleccion){
+        return function(){
+                alert(playRound(eleccion, computerPlay(),playerScore,computerScore))}
     }
-    (playerScore == 5) ? console.log("You Win the match") : console.log("You Lose the match")  
+
+    var fRock = eventoRegistrado("rock")
+    var fPaper = eventoRegistrado("paper")
+    var fScissors = eventoRegistrado("scissors") 
+    */
+
+   function fRock() {
+    alert(playRound("rock", computerPlay(),playerScore,computerScore))}
+
+    function fPaper() {
+        alert(playRound("paper", computerPlay(),playerScore,computerScore))}
+
+    function fScissors() {
+        alert(playRound("scissors", computerPlay(),playerScore,computerScore))}
+    
+    btnR.addEventListener('click', fRock);
+    btnP.addEventListener('click', fPaper);
+    btnS.addEventListener('click',fScissors);
 }
-game()
+
+beginGame();
