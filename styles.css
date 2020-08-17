@@ -5,3 +5,18 @@
     padding: 10px;
     text-align: center;
 }
+
+#score {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+}
+
+#scorePlayer, #scoreComputer {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+}

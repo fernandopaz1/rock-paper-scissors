@@ -1,12 +1,13 @@
 const options = ["rock",
                 "paper",
                 "scissors"];
-let playerScore
-let computerScore
+let playerScore;
+let computerScore;
+let isTheGameStarted=false;
 
 function computerPlay(){
-    let index = Math.floor(Math.random()*3)
-    return options[index]
+    let index = Math.floor(Math.random()*3);
+    return options[index];
 }
 
 
@@ -27,15 +28,19 @@ btnNewGame.addEventListener('click',beginGame);
 
 
 function beginGame(){
+    if(isTheGameStarted) removeScore();
     playerScore=0;
     computerScore=0;
     btnR.addEventListener('click', fRock);
     btnP.addEventListener('click', fPaper);
     btnS.addEventListener('click',fScissors);
+    isTheGameStarted=true;
+    addScore()
 }
 
   
 function showResult(playerScore,computerScore){
+    addScore();
     alert("Player:  "+playerScore+"  Computer: " +computerScore);
     endGame(playerScore,computerScore);
 }
@@ -47,7 +52,9 @@ function endGame(playerScore,computerScore){
         btnP.removeEventListener('click', fPaper);
         btnS.removeEventListener('click', fScissors);
 
-        (playerScore >=3) ? alert("You Win the match") : alert("You Lose the match")
+        (playerScore >=3) ? alert("You Win the match") : alert("You Lose the match");
+        isTheGameStarted=false;
+        removeScore();  
         
     }
 }
@@ -115,3 +122,18 @@ function playRound(playerSelection, computerSelection) {
             break                    
     }
 }
+
+function addScore() { 
+    document.getElementById("scorePlayer").innerHTML =  
+      "<h3 id='textPlayer'>Player<br>"+playerScore+"</h3>";
+
+      document.getElementById("scoreComputer").innerHTML =  
+      "<h3 id='textComputer'>Computer<br>"+computerScore+"</h3>"; 
+}
+
+function removeScore() { 
+    var element = document.getElementById("textPlayer");
+    element.parentNode.removeChild(element);
+    var element = document.getElementById("textComputer");
+    element.parentNode.removeChild(element); 
+} 
