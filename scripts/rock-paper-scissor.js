@@ -46,13 +46,13 @@ function showResult(playerScore,computerScore){
 }
 
 function endGame(playerScore,computerScore){
-    if(playerScore >= 3 || computerScore >= 3){
+    if(playerScore >= 5 || computerScore >= 5){
 
         btnR.removeEventListener('click', fRock);
         btnP.removeEventListener('click', fPaper);
         btnS.removeEventListener('click', fScissors);
 
-        (playerScore >=3) ? alert("You Win the match") : alert("You Lose the match");
+        (playerScore >=5) ? alert("You Win the match") : alert("You Lose the match");
         isTheGameStarted=false;
         removeScore();  
         
@@ -60,13 +60,13 @@ function endGame(playerScore,computerScore){
 }
 
 function playRound(playerSelection, computerSelection) {
+    if(playerSelection==computerSelection){
+        showResult(playerScore,computerScore);
+        return `Tie! ${playerSelection} vs ${playerSelection}`;
+    }
     switch(playerSelection){
         case "rock":
             switch(computerSelection){
-                case "rock": 
-                    showResult(playerScore,computerScore);
-                    return "Tie! Rock vs Rock"
-                    break
                 case "paper":
                     computerScore++
                     showResult(playerScore,computerScore);
@@ -87,10 +87,6 @@ function playRound(playerSelection, computerSelection) {
                     showResult(playerScore,computerScore);
                     return "You Win! Paper beats Rock";
                     break
-                case "paper":
-                    showResult(playerScore,computerScore);
-                    return "Tie! Paper vs Paper";
-                    break
                 case "scissors":
                     computerScore++;
                     showResult(playerScore,computerScore);
@@ -110,10 +106,6 @@ function playRound(playerSelection, computerSelection) {
                     playerScore++
                     showResult(playerScore,computerScore);
                     return "You Win! Scissors beat Paper"
-                    break
-                case "scissors":
-                    showResult(playerScore,computerScore);
-                    return "Tie! Scissors vs Scissors"
                     break    
             }
             break  
