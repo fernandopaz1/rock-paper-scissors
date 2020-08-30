@@ -1,7 +1,11 @@
+#body {
+    background-image: linear-gradient(35deg,rgb(185, 255, 214),rgb(245, 250, 175) 70%);
+}
+
 #buttons {
     margin: auto;
     width: 50%;
-    border: 3px solid green;
+    border: 3px solid rgb(141, 228, 60);
     padding: 10px;
     text-align: center;
 }
@@ -9,7 +13,7 @@
 #score {
     margin: auto;
     width: 50%;
-    border: 3px solid green;
+    border: 3px solid rgb(141, 228, 60);
     padding: 10px;
     text-align: center;
     display: flex;
@@ -19,4 +23,28 @@
     display: inline;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+.btn {
+    outline: none;
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    color: blue;
+    background-image: linear-gradient(45deg,rgb(0, 255, 106),rgb(0, 233, 19));
+}
+
+#btnNewGame{
+    outline: none;
+    height: 90px;
+    width: 90px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    background-image: linear-gradient(to top,rgb(201, 201, 201),rgb(255, 255, 255) 50%);
+    
 }
